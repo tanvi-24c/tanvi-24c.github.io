@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tanvi Dinesh Chaudhari — Cybersecurity &amp; AI</title>
+<meta name="description" content="Portfolio of Tanvi Dinesh Chaudhari — Cybersecurity &amp; AI enthusiast, B.Sc. Cyber &amp; Digital Science student.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-void:#0A0F1A;
+    --bg-panel:#0F1826;
+    --bg-panel-2:#131E30;
+    --line:#223049;
+    --text-hi:#EAF0F8;
+    --text-mid:#AFC0D6;
+    --text-low:#7488A3;
+    --teal:#2FE3C6;
+    --teal-dim:#1B9C88;
+    --amber:#F2A93B;
+    --danger:#FF6B6B;
+    --radius:10px;
+    --maxw:1080px;
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg-void);
+    color:var(--text-mid);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:64px 64px;
+    opacity:0.08;
+    pointer-events:none;
+    z-index:0;
+  }
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px; position:relative; z-index:1;}
+  h1,h2,h3{font-family:var(--font-display); color:var(--text-hi); font-weight:600; letter-spacing:-0.01em;}
+  .mono{font-family:var(--font-mono);}
+  ::selection{background:var(--teal); color:#04120F;}
+  :focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,15,26,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    max-width:var(--maxw); margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    font-family:var(--font-mono); font-size:14px; color:var(--teal);
+    display:flex; align-items:center; gap:8px;
+  }
+  .brand .dot{width:8px; height:8px; border-radius:50%; background:var(--teal); box-shadow:0 0 10px var(--teal); animation:pulse 2s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+  .navlinks{display:flex; gap:28px; font-size:14px; color:var(--text-mid);}
+  .navlinks a{transition:color .2s;}
+  .navlinks a:hover{color:var(--teal);}
+  .navlinks{display:none;}
+  @media(min-width:720px){.navlinks{display:flex;}}
+  .navcta{
+    font-family:var(--font-mono); font-size:13px;
+    border:1px solid var(--teal-dim); color:var(--teal);
+    padding:8px 14px; border-radius:6px; transition:all .2s;
+  }
+  .navcta:hover{background:var(--teal); color:#04120F;}
+
+  /* HERO */
+  .hero{padding:80px 0 60px;}
+  .hero-grid{display:grid; grid-template-columns:1fr; gap:40px; align-items:center;}
+  @media(min-width:860px){.hero-grid{grid-template-columns:1.05fr 0.95fr;}}
+  .eyebrow{
+    font-family:var(--font-mono); font-size:13px; color:var(--amber);
+    text-transform:uppercase; letter-spacing:0.12em; margin-bottom:16px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:24px; height:1px; background:var(--amber);}
+  .hero h1{font-size:clamp(34px, 5.5vw, 56px); line-height:1.05; margin-bottom:18px;}
+  .hero h1 span{color:var(--teal);}
+  .hero p.lead{font-size:17px; color:var(--text-mid); max-width:52ch; margin-bottom:28px;}
+  .hero-actions{display:flex; flex-wrap:wrap; gap:14px;}
+  .btn{
+    font-family:var(--font-mono); font-size:14px; padding:12px 20px; border-radius:7px;
+    display:inline-flex; align-items:center; gap:8px; transition:all .2s; border:1px solid transparent;
+  }
+  .btn-primary{background:var(--teal); color:#04120F; font-weight:600;}
+  .btn-primary:hover{background:#48f0d5; transform:translateY(-1px);}
+  .btn-ghost{border-color:var(--line); color:var(--text-hi);}
+  .btn-ghost:hover{border-color:var(--teal); color:var(--teal);}
+
+  /* TERMINAL CARD */
+  .terminal{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
+  }
+  .term-bar{
+    display:flex; align-items:center; gap:8px;
+    padding:12px 16px; background:var(--bg-panel-2); border-bottom:1px solid var(--line);
+  }
+  .term-bar span{width:11px; height:11px; border-radius:50%; background:#33415A;}
+  .term-bar span:nth-child(1){background:#FF5F57;}
+  .term-bar span:nth-child(2){background:#FEBC2E;}
+  .term-bar span:nth-child(3){background:#28C840;}
+  .term-title{margin-left:auto; font-family:var(--font-mono); font-size:12px; color:var(--text-low);}
+  .term-body{padding:22px 20px; font-family:var(--font-mono); font-size:13.5px; min-height:230px;}
+  .term-line{margin-bottom:14px; opacity:0; animation:fadeIn .4s forwards;}
+  .term-line .prompt{color:var(--teal);}
+  .term-line .key{color:var(--amber);}
+  .term-line .val{color:var(--text-hi);}
+  .cursor{display:inline-block; width:7px; height:14px; background:var(--teal); vertical-align:middle; animation:blink 1s step-end infinite;}
+  @keyframes blink{50%{opacity:0;}}
+  @keyframes fadeIn{to{opacity:1;}}
+  @media (prefers-reduced-motion: reduce){
+    .term-line{animation:none; opacity:1;}
+    .cursor{animation:none;}
+    .brand .dot{animation:none;}
+  }
+
+  section{padding:64px 0; border-top:1px solid var(--line); position:relative; z-index:1;}
+  .section-head{margin-bottom:36px;}
+  .section-head .eyebrow{margin-bottom:10px;}
+  .section-head h2{font-size:clamp(24px,3.5vw,32px);}
+  .section-head p{color:var(--text-low); max-width:60ch; margin-top:10px; font-size:15px;}
+
+  /* ABOUT */
+  .about-grid{display:grid; grid-template-columns:1fr; gap:32px;}
+  @media(min-width:800px){.about-grid{grid-template-columns:1.3fr 1fr;}}
+  .about-text p{margin-bottom:16px; font-size:15.5px;}
+  .about-text strong{color:var(--text-hi); font-weight:600;}
+  .stat-card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px; text-align:center;
+  }
+  .stat-card .num{font-family:var(--font-display); font-size:30px; color:var(--teal); font-weight:700;}
+  .stat-card .label{font-size:12.5px; color:var(--text-low); margin-top:4px;}
+  .stats-row{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+
+  .edu-list{margin-top:24px; display:grid; gap:12px;}
+  .edu-item{
+    display:flex; justify-content:space-between; gap:16px;
+    padding:14px 16px; background:var(--bg-panel); border:1px solid var(--line); border-radius:8px;
+    font-size:13.5px;
+  }
+  .edu-item .school{color:var(--text-hi); font-weight:500;}
+  .edu-item .yr{font-family:var(--font-mono); color:var(--text-low); white-space:nowrap;}
+
+  /* SKILLS */
+  .skill-groups{display:grid; grid-template-columns:1fr; gap:20px;}
+  @media(min-width:760px){.skill-groups{grid-template-columns:repeat(3,1fr);}}
+  .skill-card{background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px;}
+  .skill-card h3{font-size:15px; color:var(--teal); margin-bottom:14px; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.05em;}
+  .skill-tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .tag{
+    font-size:12.5px; padding:6px 11px; border-radius:5px;
+    background:var(--bg-panel-2); border:1px solid var(--line); color:var(--text-mid);
+  }
+
+  /* EXPERIENCE TIMELINE */
+  .timeline{position:relative; padding-left:28px;}
+  .timeline::before{content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--line);}
+  .tl-item{position:relative; padding-bottom:36px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-dot{
+    position:absolute; left:-28px; top:4px; width:11px; height:11px; border-radius:50%;
+    background:var(--bg-void); border:2px solid var(--teal);
+  }
+  .tl-item.ongoing .tl-dot{border-color:var(--amber); box-shadow:0 0 0 4px rgba(242,169,59,0.15);}
+  .tl-card{background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); padding:20px 22px;}
+  .tl-top{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:6px;}
+  .tl-top h3{font-size:16.5px;}
+  .status-pill{
+    font-family:var(--font-mono); font-size:11px; padding:3px 9px; border-radius:20px;
+    text-transform:uppercase; letter-spacing:0.04em; font-weight:600;
+  }
+  .status-completed{background:rgba(47,227,198,0.12); color:var(--teal); border:1px solid var(--teal-dim);}
+  .status-ongoing{background:rgba(242,169,59,0.12); color:var(--amber); border:1px solid var(--amber);}
+  .status-pending{background:rgba(116,136,163,0.12); color:var(--text-low); border:1px solid var(--line);}
+  .tl-org{font-family:var(--font-mono); font-size:12.5px; color:var(--text-low); margin-bottom:10px;}
+  .tl-card ul{padding-left:18px; font-size:14px;}
+  .tl-card li{margin-bottom:5px;}
+  .tl-skills{margin-top:12px; display:flex; flex-wrap:wrap; gap:6px;}
+  .tl-skills .tag{font-size:11.5px; padding:4px 9px;}
+  .cert-note{font-size:12px; color:var(--text-low); margin-top:10px; font-style:italic;}
+
+  /* CERTIFICATIONS */
+  .cert-grid{display:grid; grid-template-columns:1fr; gap:14px;}
+  @media(min-width:640px){.cert-grid{grid-template-columns:1fr 1fr;}}
+  .cert-card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:8px; padding:16px 18px;
+    display:flex; justify-content:space-between; align-items:center; gap:10px;
+  }
+  .cert-card .cname{color:var(--text-hi); font-size:14px; font-weight:500;}
+  .cert-card .cissuer{font-size:12px; color:var(--text-low); margin-top:2px;}
+  .cert-yr{font-family:var(--font-mono); font-size:12px; color:var(--teal);}
+
+  /* PROJECTS - populated state */
+  .proj-grid{display:grid; grid-template-columns:1fr; gap:18px;}
+  @media(min-width:760px){.proj-grid{grid-template-columns:repeat(3,1fr);}}
+  .proj-card{
+    background:var(--bg-panel); border:1px dashed var(--line); border-radius:var(--radius);
+    padding:24px; display:flex; flex-direction:column; gap:12px; min-height:180px;
+  }
+  .proj-card .ptag{font-family:var(--font-mono); font-size:11px; color:var(--amber); text-transform:uppercase; letter-spacing:0.05em;}
+  .proj-card h3{font-size:16px; color:var(--text-hi);}
+  .proj-card p{font-size:13.5px; color:var(--text-low); flex:1;}
+  .proj-progress{height:4px; background:var(--bg-panel-2); border-radius:2px; overflow:hidden;}
+  .proj-progress > div{height:100%; background:var(--teal);}
+  .proj-note{
+    margin-top:22px; padding:16px 18px; background:var(--bg-panel-2); border-radius:8px;
+    font-size:13.5px; color:var(--text-mid); border-left:2px solid var(--teal);
+  }
+
+  /* PROJECTS - real project card */
+  .work-card{
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px 28px; display:flex; flex-direction:column; gap:14px;
+  }
+  .work-top{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;}
+  .work-top h3{font-size:19px; color:var(--text-hi);}
+  .work-desc{font-size:14px; color:var(--text-mid); line-height:1.6;}
+  .work-links{display:flex; gap:10px; flex-wrap:wrap; margin-top:4px;}
+  .work-links a{
+    display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:500;
+    color:var(--teal); border:1px solid var(--teal-dim); padding:8px 14px; border-radius:6px;
+    text-decoration:none; font-family:var(--font-mono);
+  }
+  .work-links a:hover{background:rgba(47,227,198,0.08);}
+  .work-links svg{width:14px; height:14px;}
+
+  /* CONTACT / FOOTER */
+  footer{padding:70px 0 40px; border-top:1px solid var(--line);}
+  .contact-inner{display:flex; flex-direction:column; align-items:flex-start; gap:22px;}
+  .contact-inner h2{font-size:clamp(26px,4vw,38px);}
+  .contact-links{display:flex; flex-wrap:wrap; gap:14px;}
+  .clink{
+    display:flex; align-items:center; gap:10px; padding:12px 18px;
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:8px;
+    font-size:14px; color:var(--text-hi); transition:all .2s;
+  }
+  .clink:hover{border-color:var(--teal); color:var(--teal); transform:translateY(-2px);}
+  .clink svg{width:16px; height:16px; flex-shrink:0;}
+  .foot-bottom{
+    margin-top:40px; padding-top:20px; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-size:12.5px; color:var(--text-low); font-family:var(--font-mono);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand"><span class="dot"></span> tanvi.chaudhari</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#projects">Projects</a>
+    </div>
+    <a class="navcta" href="#contact">Contact →</a>
+  </nav>
+</header>
+
+<section class="hero" style="border-top:none; padding-top:60px;">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">B.Sc. Cyber &amp; Digital Science · 3rd Year</div>
+      <h1>Tanvi Dinesh<br><span>Chaudhari</span></h1>
+      <p class="lead">Cybersecurity &amp; AI enthusiast building a foundation in ethical hacking, network security, and applied AI — currently interning in both security and web development while finishing my degree at MIT ACSC, Pune.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Get in touch</a>
+        <a class="btn btn-ghost" href="https://github.com/tanvi-24c" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/tanvi2430/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="terminal">
+      <div class="term-bar"><span></span><span></span><span></span><div class="term-title">guest@portfolio: ~</div></div>
+      <div class="term-body" id="termBody"></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-text">
+      <div class="section-head">
+        <div class="eyebrow">About</div>
+        <h2>Grounded in security, curious about AI</h2>
+      </div>
+      <p>I'm a <strong>3rd-year B.Sc. Cyber &amp; Digital Science student</strong> at MIT ACSC, Alandi, Pune, with a CGPA of <strong>9.06/10</strong>. My focus sits at the intersection of <strong>cybersecurity</strong> and <strong>artificial intelligence</strong> — from vulnerability assessment and ethical hacking to prompt engineering and generative AI tools.</p>
+      <p>I'm EC-Council certified in <strong>SQL Injection Attacks</strong> and <strong>Android Bug Bounty Hunting</strong>, and I've applied these fundamentals through internships in network security and web development, alongside a college-level Capture The Flag competition.</p>
+      <p>I'm currently open to <strong>internships and entry-level roles</strong> in cybersecurity, SOC operations, or AI-driven security tooling.</p>
+      <div class="edu-list">
+        <div class="edu-item"><span class="school">MIT ACSC, Alandi (D), Pune — B.Sc. Cyber &amp; Digital Science</span><span class="yr">2024–2027</span></div>
+        <div class="edu-item"><span class="school">K.R.T. Arts, B.H. Commerce &amp; A.M. Science College, Nashik — 12th (67%)</span><span class="yr">2024</span></div>
+        <div class="edu-item"><span class="school">Shriman T.J. Chavan (Bytco) Vidhyalaya, Nashik — 10th (88%)</span><span class="yr">2022</span></div>
+      </div>
+    </div>
+    <div class="stats-row" style="align-content:start;">
+      <div class="stat-card"><div class="num">9.06</div><div class="label">CGPA / 10</div></div>
+      <div class="stat-card"><div class="num">4</div><div class="label">Internships</div></div>
+      <div class="stat-card"><div class="num">4</div><div class="label">Certifications</div></div>
+      <div class="stat-card"><div class="num">2027</div><div class="label">Expected Graduation</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Skills</div>
+      <h2>What I work with</h2>
+      <p>A blend of security fundamentals and applied development, built through coursework, certifications, and internships.</p>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-card">
+        <h3>Security</h3>
+        <div class="skill-tags">
+          <span class="tag">SQL Injection</span><span class="tag">Ethical Hacking</span>
+          <span class="tag">Bug Bounty Hunting</span><span class="tag">Network Security</span>
+          <span class="tag">OWASP</span><span class="tag">Vulnerability Assessment</span>
+          <span class="tag">Risk Management</span><span class="tag">Information Security</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>AI &amp; Development</h3>
+        <div class="skill-tags">
+          <span class="tag">Prompt Engineering</span><span class="tag">Generative AI</span>
+          <span class="tag">Python</span><span class="tag">SQL</span>
+          <span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">Node.js</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Tools &amp; Platforms</h3>
+        <div class="skill-tags">
+          <span class="tag">GitHub</span><span class="tag">Supabase</span>
+          <span class="tag">Lovable</span><span class="tag">Git</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Experience</div>
+      <h2>Internships &amp; hands-on work</h2>
+      <p>Chronological log of my internship experience across cybersecurity and web development.</p>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item ongoing">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-top">
+            <h3>Web Development Intern</h3>
+            <span class="status-pill status-ongoing">Ongoing</span>
+          </div>
+          <div class="tl-org">SpaceECE — UDAAN Research Centre, Dhayari, Pune (Remote) · May 28, 2026 – Present</div>
+          <ul>
+            <li>Working remotely on web development tasks under mentor guidance.</li>
+            <li>Gaining hands-on implementation experience across HTML/CSS, JavaScript, and remote team collaboration.</li>
+          </ul>
+          <div class="tl-skills">
+            <span class="tag">Web Development</span><span class="tag">HTML/CSS</span>
+            <span class="tag">JavaScript</span><span class="tag">Remote Collaboration</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-top">
+            <h3>Cybersecurity Intern — Networking &amp; Cyber Security</h3>
+            <span class="status-pill status-completed">Completed</span>
+          </div>
+          <div class="tl-org">ISEA (MeitY, Govt. of India) — guided remotely by Dept. of CSE, Tezpur University · Jun 3, 2026 – Aug 2, 2026 (Unpaid)</div>
+          <ul>
+            <li>Completed a project-based summer internship on "Networking and Cyber Security" under the MeitY ISEA Phase III project, guided remotely from Tezpur University.</li>
+            <li>Applied practical networking and security concepts to a real project brief; performance rated "Good" by the reviewing faculty.</li>
+          </ul>
+          <div class="tl-skills">
+            <span class="tag">Networking</span><span class="tag">Cybersecurity</span><span class="tag">Project-Based Learning</span>
+          </div>
+          <div class="cert-note">Certificate Ref: TU/ISEA/SI/2026/029 · Issued by Ministry of Electronics &amp; Information Technology / ISEA, dated 20/08/2026</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-top">
+            <h3>Cybersecurity Intern (Project-Based)</h3>
+            <span class="status-pill status-ongoing">Ongoing</span>
+          </div>
+          <div class="tl-org">ZeTheta — Project-Based Internship (Unpaid)</div>
+          <ul>
+            <li>Joined as a project-based cybersecurity intern at ZeTheta, applying security concepts to a real project brief.</li>
+          </ul>
+          <div class="tl-skills">
+            <span class="tag">Cybersecurity</span><span class="tag">Project-Based Learning</span>
+          </div>
+          <div class="cert-note">Certificate to be issued — will be added once received.</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-top">
+            <h3>Cybersecurity Intern</h3>
+            <span class="status-pill status-completed">Completed</span>
+          </div>
+          <div class="tl-org">TechnoHacks Solutions Pvt. Ltd. · Apr 2026 – May 2026</div>
+          <ul>
+            <li>Completed a 1-month internship focused on network security, threat analysis, and vulnerability assessment.</li>
+            <li>Applied core concepts of ethical hacking and cyber-threat identification in practical exercises.</li>
+          </ul>
+          <div class="tl-skills">
+            <span class="tag">Network Security</span><span class="tag">Vulnerability Assessment</span>
+            <span class="tag">Ethical Hacking</span><span class="tag">Cyber Threats</span>
+          </div>
+          <div class="cert-note">Certificate ID: TH-2026-011AF9CC</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Certifications</div>
+      <h2>Credentials</h2>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card"><div><div class="cname">SQL Injection Attacks</div><div class="cissuer">EC-Council</div></div><div class="cert-yr">2025</div></div>
+      <div class="cert-card"><div><div class="cname">Android Bug Bounty Hunting</div><div class="cissuer">EC-Council</div></div><div class="cert-yr">2025</div></div>
+      <div class="cert-card"><div><div class="cname">Introduction to Cyber Security</div><div class="cissuer">Simplilearn</div></div><div class="cert-yr">2025</div></div>
+      <div class="cert-card"><div><div class="cname">GitHub Foundations</div><div class="cissuer">Microsoft</div></div><div class="cert-yr">2025</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Projects</div>
+      <h2>What I've built</h2>
+      <p>A hands-on project applying security concepts and AI integration to solve a real problem, not just theory.</p>
+    </div>
+    <div class="proj-grid" style="grid-template-columns:1fr;">
+      <div class="work-card">
+        <div class="work-top">
+          <h3>AI-Assisted Web Vulnerability Scanner</h3>
+          <span class="status-pill status-completed">Live on GitHub</span>
+        </div>
+        <p class="work-desc">
+          A full-stack automated web security scanner (Python, FastAPI, SQLAlchemy) that crawls target websites and
+          tests for OWASP Top 10 vulnerabilities — SQL injection, XSS, CSRF, insecure cookies, and missing security
+          headers. An AI-powered analysis layer turns every raw finding into a plain-language explanation, severity
+          rating, business impact, and remediation guidance mapped to OWASP references, then compiles it into a
+          PDF/JSON report. Includes an authorization allow-list safety mechanism so scans only run against explicitly
+          approved targets, and a pytest suite covering every scanner module.
+        </p>
+        <div class="tl-skills">
+          <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">SQLAlchemy</span>
+          <span class="tag">OWASP</span><span class="tag">AI Integration</span><span class="tag">Pytest</span>
+        </div>
+        <div class="work-links">
+          <a href="https://github.com/tanvi-24c/ai-web-vulnerability-scanner-" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.02c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.833.09-.647.35-1.088.636-1.338-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.31.678.921.678 1.856 0 1.34-.012 2.421-.012 2.751 0 .268.18.58.688.482A10.02 10.02 0 0022 12.02C22 6.484 17.523 2 12 2z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="proj-note">📌 More projects in progress — follow along on <a href="https://github.com/tanvi-24c" target="_blank" rel="noopener" style="color:var(--teal); text-decoration:underline;">GitHub</a>.</div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap contact-inner">
+    <div class="eyebrow">Contact</div>
+    <h2>Let's connect</h2>
+    <p style="max-width:50ch; font-size:15px;">Open to cybersecurity and AI-focused internship or placement opportunities. Reach out on any of these:</p>
+    <div class="contact-links">
+      <a class="clink" href="mailto:tdchaudhari325@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        tdchaudhari325@gmail.com
+      </a>
+      <a class="clink" href="tel:+919960255054">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.9.34 1.79.65 2.65a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.43-1.43a2 2 0 012.11-.45c.86.31 1.75.53 2.65.65A2 2 0 0122 16.92z"/></svg>
+        +91 99602 55054
+      </a>
+      <a class="clink" href="https://github.com/tanvi-24c" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.75c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        github.com/tanvi-24c
+      </a>
+      <a class="clink" href="https://www.linkedin.com/in/tanvi2430/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        linkedin.com/in/tanvi2430
+      </a>
+      <a class="clink" href="#" onclick="return false;" style="cursor:default;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Pune, Maharashtra, India
+      </a>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Tanvi Dinesh Chaudhari</span>
+      <span>Built for placement season · Last updated Aug 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const lines = [
+    { p: 'guest@portfolio', c: '~$ ', k: 'whoami', v: '' },
+    { v: 'Tanvi Dinesh Chaudhari' },
+    { blank: true },
+    { p: 'guest@portfolio', c: '~$ ', k: 'cat role.txt', v: '' },
+    { v: 'Cybersecurity & AI Enthusiast' },
+    { v: "B.Sc. Cyber & Digital Science, 3rd Year" },
+    { blank: true },
+    { p: 'guest@portfolio', c: '~$ ', k: 'status --current', v: '' },
+    { v: '[OK] TechnoHacks internship — Completed' },
+    { v: '[..] SpaceECE internship — Ongoing' },
+    { v: '[OK] ISEA (Tezpur Univ.) — Completed' },
+    { v: '[..] ZeTheta cybersecurity project — Ongoing' },
+  ];
+
+  const body = document.getElementById('termBody');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function renderLines(){
+    body.innerHTML = '';
+    lines.forEach((l, i) => {
+      const div = document.createElement('div');
+      div.className = 'term-line';
+      if(!reduceMotion) div.style.animationDelay = (i * 0.12) + 's';
+      if(l.blank){
+        div.innerHTML = '&nbsp;';
+      } else if(l.k){
+        div.innerHTML = '<span class="prompt">' + l.p + '</span><span style="color:var(--text-low);">' + l.c + '</span><span class="key">' + l.k + '</span>';
+      } else {
+        div.innerHTML = '<span class="val">' + l.v + '</span>';
+      }
+      body.appendChild(div);
+    });
+    const cursorLine = document.createElement('div');
+    cursorLine.className = 'term-line';
+    if(!reduceMotion) cursorLine.style.animationDelay = (lines.length * 0.12) + 's';
+    cursorLine.innerHTML = '<span class="prompt">guest@portfolio</span><span style="color:var(--text-low);">~$ </span><span class="cursor"></span>';
+    body.appendChild(cursorLine);
+  }
+  renderLines();
+</script>
+
+</body>
+</html>
